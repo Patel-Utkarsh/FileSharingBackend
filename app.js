@@ -1,6 +1,6 @@
 const express = require("express");
 const fileUpload = require("express-fileupload");
-const upload = require("../backend/Routes/upload");
+const upload = require("./Routes/upload");
 const dbConnect = require("./config/database");
 const cors = require('cors');
 
