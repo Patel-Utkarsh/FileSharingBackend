@@ -5,7 +5,7 @@ const user = require("../Models/user");
 exports.upload = async (req,res) =>{
     const {title,id,size} = req.body;
     const myfile = req.files.file;
-    const newPath = path.join(__dirname,'..','.',data,myfile.name);
+    const newPath = path.join(__dirname,'..','.','data',myfile.name);
   
   
     myfile.mv(newPath,(err)=>{
