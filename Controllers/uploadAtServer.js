@@ -5,10 +5,10 @@ const user = require("../Models/user");
 exports.upload = async (req,res) =>{
     const {title,id,size} = req.body;
     const myfile = req.files.file;
-    const newPath = path.join(__dirname,'..','.');
-    const filePath = `${newPath}` + '\\data' + `\\${myfile.name}`;
+    const newPath = path.join(__dirname,'..','.',data,myfile.name);
   
-    myfile.mv(filePath,(err)=>{
+  
+    myfile.mv(newPath,(err)=>{
         if(err) {
             return res.status(500).json({
                 success: false,
@@ -19,10 +19,10 @@ exports.upload = async (req,res) =>{
 
     const randomString = randomstring.generate(5)
 
-    const newFilePath = filePath.replace(/\\/g, '\\\\');
+   // const newFilePath = filePath.replace(/\\/g, '\\\\');
 
     try {
-       const linkData =  await link.create({title,uploadDate : new Date(),linkCode : randomString,linkData : newFilePath,size});
+       const linkData =  await link.create({title,uploadDate : new Date(),linkCode : randomString,linkData : newPath,size});
         await user.findByIdAndUpdate({_id : id},{$push : {data : linkData._id }});
         res.status(200).json({
             success : true,
