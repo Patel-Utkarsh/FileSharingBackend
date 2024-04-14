@@ -4,6 +4,8 @@ const { upload, download } = require("../Controllers/uploadAtServer");
 const { signup, login } = require("../Controllers/authentication");
 const { getData, getLinkData } = require("../Controllers/getData");
 const { deletefile } = require("../Controllers/deleteFile");
+const { cronJob } = require("../Controllers/cronJob");
+
 
 const route = express.Router();
 
@@ -15,5 +17,6 @@ route.post('/api/login',login);
 route.post('/api/userData',getData)
 route.post('/api/linkData',getLinkData)
 route.post('/api/deleteFile',deletefile);
+route.get('/api/cj',cronJob);
 
 module.exports = route;
